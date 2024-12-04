@@ -1,0 +1,170 @@
+/**
+ * Spotify Now Playing Widget Styles
+ */
+
+.spotify-now-playing {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #282828;
+  border-radius: 8px;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  max-width: 600px;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.spotify-now-playing__icon {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 34px;
+  height: 34px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  display: block;
+  z-index: 1;
+}
+
+.spotify-now-playing__icon:hover {
+  opacity: 1;
+}
+
+.spotify-now-playing__icon img {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
+
+.spotify-now-playing__cover {
+  flex-shrink: 0;
+  margin-right: 1rem;
+  width: 100px;
+}
+
+.spotify-now-playing__cover img {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: block;
+}
+
+.spotify-now-playing__info {
+  flex: 1;
+  min-width: 0;
+  padding-right: 1.5rem;
+}
+
+.spotify-now-playing__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.spotify-now-playing__title a {
+  color: #1db954;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.spotify-now-playing__title a:hover {
+  color: #1ed760;
+  text-decoration: underline;
+}
+
+.spotify-now-playing__artist {
+  font-size: 1rem;
+  color: #b3b3b3;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.spotify-now-playing__album {
+  font-size: 0.9rem;
+  color: #b3b3b3;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.spotify-not-playing {
+  background: #282828;
+  color: #b3b3b3;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  font-style: italic;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+  .spotify-now-playing {
+    flex-direction: column;
+    padding: 1.5rem 1rem 1rem;
+    text-align: center;
+  }
+
+  .spotify-now-playing__cover {
+    width: 150px;
+    margin: 0 auto 1rem;
+  }
+
+  .spotify-now-playing__cover img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .spotify-now-playing__info {
+    padding-right: 0;
+  }
+
+  .spotify-now-playing__title {
+    font-size: 1.1rem;
+  }
+
+  .spotify-now-playing__icon {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+  .spotify-now-playing {
+    padding: 1.5rem 0.75rem 1rem;
+  }
+
+  .spotify-now-playing__cover {
+    width: 120px;
+    margin: 0 auto 1rem;
+  }
+
+  .spotify-now-playing__cover img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .spotify-now-playing__title {
+    font-size: 1rem;
+  }
+
+  .spotify-now-playing__artist {
+    font-size: 0.9rem;
+  }
+
+  .spotify-now-playing__album {
+    font-size: 0.8rem;
+  }
+}
