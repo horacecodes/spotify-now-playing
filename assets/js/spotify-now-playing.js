@@ -101,7 +101,7 @@
                     }
                 },
                 error: function() {
-                    widget.html('<div class="spotify-not-playing">Error fetching now playing data</div>');
+                    widget.html('<div class="spotify-not-playing">' + spotifyNowPlaying.i18n.notPlaying + '</div>');
                 }
             });
         });

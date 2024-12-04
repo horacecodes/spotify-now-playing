@@ -25,12 +25,14 @@ class Admin {
      * @return void
      */
     public function add_admin_menu() {
-        add_options_page(
-            __('Spotify Now Playing Settings', 'spotify-now-playing'),
+        add_menu_page(
             __('Spotify Now Playing', 'spotify-now-playing'),
+            __('Now Playing', 'spotify-now-playing'),
             'manage_options',
             'spotify-now-playing',
-            [$this, 'render_settings_page']
+            [$this, 'render_settings_page'],
+            'dashicons-controls-play',
+            30
         );
     }
 
@@ -86,8 +88,15 @@ class Admin {
             return;
         }
         ?>
-        <div class="wrap">
+        <div class="wrap spotify-now-playing-admin">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+            
+            <div class="notice notice-info">
+                <p>
+                    <?php esc_html_e('Use the shortcode [spotify_now_playing] to display your currently playing track.', 'spotify-now-playing'); ?>
+                </p>
+            </div>
+
             <form action="options.php" method="post">
                 <?php
                 settings_fields('spotify_now_playing_settings');
@@ -95,14 +104,22 @@ class Admin {
                 submit_button();
                 ?>
             </form>
-            <h2><?php esc_html_e('Usage Instructions', 'spotify-now-playing'); ?></h2>
-            <p><?php esc_html_e('Use the shortcode [spotify_now_playing] to display your currently playing track.', 'spotify-now-playing'); ?></p>
-            <p><?php esc_html_e('Optional attributes:', 'spotify-now-playing'); ?></p>
-            <ul>
-                <li>show_cover="true|false"</li>
-                <li>show_artist="true|false"</li>
-                <li>show_album="true|false"</li>
-            </ul>
+
+            <div class="card">
+                <h2><?php esc_html_e('Usage Instructions', 'spotify-now-playing'); ?></h2>
+                <p><?php esc_html_e('The widget will automatically update every few seconds to show your currently playing track on Spotify.', 'spotify-now-playing'); ?></p>
+                <h3><?php esc_html_e('Shortcode Options', 'spotify-now-playing'); ?></h3>
+                <ul>
+                    <li><code>show_cover="true|false"</code> - <?php esc_html_e('Show or hide the album cover', 'spotify-now-playing'); ?></li>
+                    <li><code>show_artist="true|false"</code> - <?php esc_html_e('Show or hide the artist name', 'spotify-now-playing'); ?></li>
+                    <li><code>show_album="true|false"</code> - <?php esc_html_e('Show or hide the album name', 'spotify-now-playing'); ?></li>
+                </ul>
+                <p>
+                    <a href="https://developer.spotify.com/dashboard" target="_blank" class="button button-secondary">
+                        <?php esc_html_e('Visit Spotify Developer Dashboard', 'spotify-now-playing'); ?>
+                    </a>
+                </p>
+            </div>
         </div>
         <?php
     }
@@ -113,7 +130,16 @@ class Admin {
      * @return void
      */
     public function render_settings_section() {
-        echo '<p>' . esc_html__('Enter your Spotify API credentials below. You can obtain these by creating an application in the Spotify Developer Dashboard.', 'spotify-now-playing') . '</p>';
+        ?>
+        <p>
+            <?php esc_html_e('Enter your Spotify API credentials below. These are required for the plugin to access your currently playing track information.', 'spotify-now-playing'); ?>
+            <?php esc_html_e('You can obtain these credentials by creating an application in the Spotify Developer Dashboard.', 'spotify-now-playing'); ?>
+        </p>
+        <p>
+            <strong><?php esc_html_e('Important:', 'spotify-now-playing'); ?></strong>
+            <?php esc_html_e('Make sure to set the correct redirect URI in your Spotify application settings and keep these credentials secure.', 'spotify-now-playing'); ?>
+        </p>
+        <?php
     }
 
     /**
